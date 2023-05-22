@@ -8,8 +8,11 @@ class LoginController {
         def max = params.max ?: "5"
         def offset = params.offset ?: "0"
         List topics=topicService.recentList(max,offset)
-//        User user = User.findByUserName(params.userName)
-        render view:"index",model:[topicList:topics,topicCount:topicService.count()]
+        def model=[topicList:topics,topicCount:topicService.count()]
+        if(request.xhr)
+            render template:"posts",model:[tList:model.topicList, tCount:model.topicCount]
+        else
+            render view:"index",model:model
     }
 
     def user() {
@@ -24,4 +27,15 @@ class LoginController {
         }else
             flash.pass="Incorrect password"
     }
+
+//    def list() {
+//        def max = params.max ?: "5"
+//        def offset = params.offset ?: "0"
+//        List topics=topicService.recentList(max,offset)
+//        def model=[topicList:topics,topicCount:topicService.count()]
+//        if(request.xhr)
+//            render template:"posts",model:model
+//        else
+//            model
+//    }
 }

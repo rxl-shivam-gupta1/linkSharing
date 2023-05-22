@@ -29,6 +29,7 @@ class UserController {
         } catch (ValidationException e) {
             respond user.errors,view:"create"
         }
+        flash.message="Registered Successfully"
         redirect controller:"login",action:"index"
     }
 

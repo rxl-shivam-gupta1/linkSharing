@@ -1,6 +1,7 @@
 package linksharing
 
 import grails.testing.services.ServiceUnitTest
+import linksharing.ResourceRatingService
 import spock.lang.Specification
 
 class ResourceRatingServiceSpec extends Specification implements ServiceUnitTest<ResourceRatingService>{

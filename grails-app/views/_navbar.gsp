@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
 	<div class="container">
 		<div class="col">
-   			<a class="navbar-brand" href="index">LinkSharing</a>
+   			<g:link class="navbar-brand" controller="login" action="index">LinkSharing</g:link>
    		</div>
    		<div class="col">
    			<div class="form-group has-search">

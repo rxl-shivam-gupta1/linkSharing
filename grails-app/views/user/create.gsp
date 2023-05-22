@@ -9,7 +9,7 @@
                     </g:eachError>
                 </ul>
             </g:hasErrors>
-            <g:form class="register" resource="${this.user}" method="POST">
+            <g:uploadForm class="register" resource="${this.user}" method="POST">
                 <div class="header">
                     <h1>Register</h1>
                 </div>
@@ -45,13 +45,13 @@
             	    </div>
             	    <div class="image">
             		    <label for="image-upload">Photo:</label>
-            		    <input type="file" id="image-upload" name="photo" accept="image/*"></input>
+            		    <input type="file" id="image-upload" name="photo" accept="image/*">
             	    </div>
             	    <div>
-            		    <button class="btn btn-dark" type="submit">Register</button>
+            		    <g:submitButton class="btn btn-dark" name="submit" value="Register"/>
             	    </div>
                 </div>
-            </g:form>
+            </g:uploadForm>
         </div>
     </body>
 </html>

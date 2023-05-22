@@ -11,6 +11,8 @@
 <body>
     <asset:javascript src="js/bootstrap.js"/>
     <asset:javascript src="application.js"/>
+    <asset:javascript src="jquery-3.3.1.min.js"/>
+    <asset:javascript src="myJQuery.js"/>
     <div class="container">
 		<g:render template="/navbar"/>
 		<g:if test="${flash.message}">
@@ -32,7 +34,9 @@
                     <h3>Recent posts</h3>
                     <hr>
                 </div>
-                <g:render template="/posts" model="[tList:topicList,tCount:topicCount]"/>
+                <div id="post">
+                    <g:render template="/login/posts" model="[tList:topicList, tCount:topicCount]"/>
+                </div>
   			</div>
   			</div>
   			<div class="col">
@@ -47,14 +51,13 @@
                     <h3>Trending posts</h3>
                     <hr>
                 </div>
-                    <g:render template="/posts"/>
-              	</div>
+                <g:render template="/login/posts"/>
+            </div>
   			</div>
     		<div class="col">
     			<g:include view="user/create" />
     		</div>
-    		</div>
-    	</div>
-	</div>
+        </div>
+    </div>
 </body>
 </html>

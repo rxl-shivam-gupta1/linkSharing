@@ -1,11 +1,13 @@
 <%@ page import="linksharing.Topic" %>
-<div class="row">
+<div class="row list">
     <div class="col">
         <g:if test="${params.controller=='dashboard' || params.controller=='profile'}">
             <g:each in="${tList}" var="p">
                 <div class="row">
-                    <div class="photo col-2">
-                        <asset:image src="user (2).png"/>
+                    <div class="col-2">
+
+                            <asset:image src="user (2).png"/>
+
                     </div>
                     <div class="col-4">
                         <p>
@@ -14,7 +16,9 @@
                         </p>
                     </div>
                     <div class="topicName col">
-                        <p>${p.topic.name}</p>
+                        <g:link controller="topic" action="show" params="[name:p.topic.name]">
+                            ${p.topic.name}
+                        </g:link>
                     </div>
                 </div>
                 <hr>
@@ -24,7 +28,9 @@
             <g:each in="${tList}" var="p">
                 <div class="row">
                     <div class="col-2">
-                        <asset:image src="user (2).png"/>
+
+                            <asset:image src="user (2).png"/>
+
                     </div>
                     <div class="col-5">
                         <p>
@@ -35,14 +41,16 @@
                         </p>
                     </div>
                     <div class="topicName col">
-                        <p>${p.name}</p>
+                        <g:link controller="topic" action="show" params="[name:p.name]">
+                            ${p.name}
+                        </g:link>
                     </div>
                 </div>
                 <hr>
             </g:each>
         </g:elseif>
         <div class="pagination">
-            <g:paginate total="${tCount ?: 0}" max="5" maxsteps="5"/>
+            <g:paginate total="${tCount ?: 0}" max="5" maxsteps="3"/>
         </div>
     </div>
 </div>

@@ -17,7 +17,9 @@
             <div class="prof col-5">
         	    <div class="row">
         	        <div class="col-4">
-                        <asset:image src="user (1).png"/>
+
+                            <asset:image src="user (1).png"/>
+
                     </div>
                     <div class="col">
                         <div class="row">
@@ -44,7 +46,7 @@
                             <h3>Inbox</h3>
                             <hr>
                         </div>
-                        <g:render template="/posts"/>
+                        <g:render template="/login/posts"/>
                     </div>
                 </div>
             </div>
@@ -57,7 +59,7 @@
                             <h3>Subscriptions</h3>
                             <hr>
                         </div>
-                        <g:render template="/posts" model="[tList:subList,tCount:subCount]"/>
+                        <g:render template="/login/posts" model="[tList:subList, tCount:subCount]"/>
                     </div>
                 </div>
             </div>
@@ -68,7 +70,7 @@
                             <h3>Trending Topics</h3>
                             <hr>
                         </div>
-                        <g:render template="/posts"/>
+                        <g:render template="/login/posts"/>
                     </div>
                 </div>
             </div>

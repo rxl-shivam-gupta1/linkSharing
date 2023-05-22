@@ -14,8 +14,8 @@ class TopicController {
         redirect controller:"login",action:"index"
     }
 
-    def show(Long id) {
-        respond topicService.get(id)
+    def show() {
+        respond topicService.get(params.name)
     }
 
     def create() {

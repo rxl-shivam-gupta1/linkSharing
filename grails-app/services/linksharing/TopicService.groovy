@@ -13,8 +13,8 @@ class TopicService {
         return  topicList
     }
 
-    Topic get(Serializable id){
-        Topic topic=Topic.findById(id as Long)
+    Topic get(String name){
+        Topic topic=Topic.findByName(name)
         return topic
     }
 

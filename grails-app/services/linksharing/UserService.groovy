@@ -7,10 +7,10 @@ import grails.validation.ValidationException
 class UserService {
 
     def save(User user) {
-        //params.photo=params.photo.getBytes()
-
+//        User user=new User()
+//
 //        if(params.passWord==params.confirm) {
-//            bindData(user,params)
+//            user.properties=params
 //        }
 //        else
 //            render "Incorrect password"

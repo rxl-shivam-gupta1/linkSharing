@@ -1,6 +1,7 @@
 package linksharing
 
 import grails.testing.services.ServiceUnitTest
+import linksharing.ResourceService
 import spock.lang.Specification
 
 class ResourceServiceSpec extends Specification implements ServiceUnitTest<ResourceService>{

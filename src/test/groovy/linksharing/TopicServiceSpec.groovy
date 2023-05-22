@@ -1,6 +1,7 @@
 package linksharing
 
 import grails.testing.services.ServiceUnitTest
+import linksharing.TopicService
 import spock.lang.Specification
 
 class TopicServiceSpec extends Specification implements ServiceUnitTest<TopicService>{
