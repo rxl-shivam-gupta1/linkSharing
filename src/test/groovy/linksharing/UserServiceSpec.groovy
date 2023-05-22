@@ -1,9 +1,9 @@
-package linksharing2
+package linksharing
 
 import grails.testing.services.ServiceUnitTest
 import spock.lang.Specification
 
-class USerServiceSpec extends Specification implements ServiceUnitTest<USerService>{
+class UserServiceSpec extends Specification implements ServiceUnitTest<USerService>{
 
     def setup() {
     }
