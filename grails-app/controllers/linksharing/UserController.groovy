@@ -25,11 +25,10 @@ class UserController {
 
     def save(User user) {
         try {
-            userService.save(user)
+            flash.message=userService.save(user)
         } catch (ValidationException e) {
             respond user.errors,view:"create"
         }
-        flash.message="Registered Successfully"
         redirect controller:"login",action:"index"
     }
 

@@ -29,19 +29,11 @@ class LinkResourceController {
         }
 
         try {
-            linkResourceService.save(linkResource)
+            flash.message=linkResourceService.save(linkResource)
         } catch (ValidationException e) {
             respond linkResource.errors, view:'create'
-            return
         }
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'linkResource.label', default: 'LinkResource'), linkResource.id])
-                redirect linkResource
-            }
-            '*' { respond linkResource, [status: CREATED] }
-        }
+        redirect controller:"dashboard",action:"index"
     }
 
     def edit(Long id) {

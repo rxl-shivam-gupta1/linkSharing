@@ -5,7 +5,16 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class LinkResourceService {
 
-    def serviceMethod() {
+    String save(LinkResource link){
+        link.save(flush:true)
+        return "Added Link Resource"
+    }
 
+    List list(String max,String offset,User user) {
+        List linkList
+        linkList = LinkResource.createCriteria().list(max:max,offset:offset) {
+            eq("createdBy",user)
+        }
+        return  linkList
     }
 }

@@ -29,19 +29,11 @@ class DocumentResourceController {
         }
 
         try {
-            documentResourceService.save(documentResource)
+            flash.message=documentResourceService.save(documentResource)
         } catch (ValidationException e) {
             respond documentResource.errors, view:'create'
-            return
         }
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'documentResource.label', default: 'DocumentResource'), documentResource.id])
-                redirect documentResource
-            }
-            '*' { respond documentResource, [status: CREATED] }
-        }
+        redirect controller:"dashboard",action:"index"
     }
 
     def edit(Long id) {

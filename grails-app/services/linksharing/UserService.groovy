@@ -16,6 +16,7 @@ class UserService {
 //            render "Incorrect password"
 
         user.save()
+        return "Registered Successfully"
     }
 
     Long count(){
