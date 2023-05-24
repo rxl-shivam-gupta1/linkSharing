@@ -17,4 +17,12 @@ class DocumentResourceService {
         }
         return  docList
     }
+
+    List resList(String name) {
+        List docList
+        docList = DocumentResource.createCriteria().list() {
+            eq("topic",Topic.findByName(name))
+        }
+        return  docList
+    }
 }

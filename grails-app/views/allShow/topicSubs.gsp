@@ -22,8 +22,8 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Topic</th>
                         <th>Created By User</th>
+                        <th>Subscribed User</th>
                         <th>dateCreated</th>
                         <th>Seriousness</th>
                         <th>Manage</th>
@@ -33,8 +33,8 @@
                     <g:each in="${subs}" var="sub">
                         <tr>
                             <td id="id_${sub.id}">${sub.id}</td>
-                            <td id="subName_${sub.id}">${sub.topic.name}</td>
                             <td id="subCreated_${sub.id}">${sub.topic.createdBy.userName}</td>
+                            <td id="subSubscribed_${sub.id}">${sub.user.userName}</td>
                             <td id="dateCreated_${sub.id}">${sub.dateCreated}</td>
                             <td id="visibility_${sub.id}">${sub.seriousness}</td>
                             <td class="delete_${sub.id}">

@@ -12,7 +12,6 @@
     <asset:javascript src="js/bootstrap.js"/>
     <asset:javascript src="application.js"/>
     <asset:javascript src="dashboard.js"/>
-    <asset:javascript src="myJQuery.js"/>
     <div class="container">
         <g:render template="/navbar"/>
         <g:if test="${flash.message}">
@@ -22,12 +21,28 @@
             </div>
         </g:if>
         <div class="row">
-            <div class="prof col">
-        	    <div class="container">
+            <div class="col">
+            <div class="row">
+        	    <div class="prof container">
         	        <g:render template="/userCard" model="[first:first,last:last,userName:name,topic:topic,sub:sub]"/>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="row">
+                <div class="post container">
+                    <div class="row">
+                        <div class="header">
+                            <h3>Subscriptions</h3>
+                            <hr>
+                        </div>
+                        <div id="post">
+                            <g:render template="/login/posts" model="[type:'subscription',sList:subList, sCount:subCount]"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
                 <div class="post container">
                     <div class="row">
                         <div class="header">
@@ -38,33 +53,20 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="post container">
-                    <div class="row">
-                        <div class="header">
-                            <h3>Subscriptions</h3>
-                            <hr>
-                        </div>
-                        <div id="post">
-                        <g:render template="/login/posts" model="[tList:subList, tCount:subCount]"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
+            <br>
+            <div class="row">
                 <div class="post container">
                     <div class="row">
                         <div class="header">
                             <h3>Trending Topics</h3>
                             <hr>
                         </div>
-                        <g:render template="/login/posts"/>
+                        <g:render template="/login/posts" model="[type:'topic',tList:topicList,tCount:topicCount]"/>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>

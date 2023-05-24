@@ -2,9 +2,9 @@
     <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
         <asset:image src="user.png"/>
     </button>
-    <g:if test="${session.user.admin==true}">
+    <g:if test="${session.user.admin==false}">
         <ul class="dropdown-menu">
-            <li><g:link class="dropdown-item" controller="profile">Profile</g:link></li>
+            <li><g:link class="dropdown-item" controller="profile" params="[userName:session.user.userName]">Profile</g:link></li>
             <li><hr class="dropdown-divider"></li>
             <li><g:link class="dropdown-item" controller="logout">Logout</g:link></li>
         </ul>

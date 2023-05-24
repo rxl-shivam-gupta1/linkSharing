@@ -11,6 +11,16 @@ class SubscriptionService {
         List subList
         subList = Subscription.createCriteria().list(max:max,offset:offset) {
             eq("user",user)
+            order("dateCreated","desc")
+        }
+        return  subList
+    }
+
+    List topicList(String name) {
+        List subList
+        subList = Subscription.createCriteria().list() {
+            eq("topic",Topic.findByName(name))
+            order("dateCreated","desc")
         }
         return  subList
     }

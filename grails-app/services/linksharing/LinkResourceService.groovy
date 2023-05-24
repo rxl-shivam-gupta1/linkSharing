@@ -17,4 +17,12 @@ class LinkResourceService {
         }
         return  linkList
     }
+
+    List resList(String name) {
+        List linkList
+        linkList = LinkResource.createCriteria().list() {
+            eq("topic",Topic.findByName(name))
+        }
+        return  linkList
+    }
 }

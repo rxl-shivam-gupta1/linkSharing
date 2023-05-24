@@ -20,4 +20,12 @@ class AllShowService {
         }
         return  subs
     }
+
+    List topicSubList(name) {
+        List subs
+        subs = Subscription.createCriteria().list() {
+            eq("topic",Topic.findByName(name))
+        }
+        return  subs
+    }
 }

@@ -14,12 +14,26 @@
 <div class="container">
     <g:render template="/navbar"/>
     <div class="row">
+    <div class="col">
         <div class="col">
             <div class="prof container">
                 <g:render template="/userCard" model="[first:first,last:last,userName:userName,topic:topic,sub:sub]"/>
             </div>
         </div>
         <div class="col">
+            <div class="post container">
+                <div class="row">
+                    <div class="header">
+                        <h3>Subscriptions</h3>
+                        <hr>
+                    </div>
+                    <g:render template="/login/posts" model="[tList:subList, tCount:subCount]"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
             <div class="post container">
                 <div class="row">
                     <div class="col">
@@ -34,25 +48,12 @@
                         </div>
                     </div>
                     <hr>
-                </div>
-                <g:render template="/login/posts" model="[rList:resList, rCount:resCount]"/>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-6">
-            <div class="post container">
-                <div class="row">
-                    <div class="header">
-                        <h3>Subscriptions</h3>
-                        <hr>
-                    </div>
-                    <g:render template="/login/posts" model="[tList:subList, tCount:subCount]"/>
+                    <g:render template="/login/posts" model="[rList:resList, rCount:resCount]"/>
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <br>
+        <div class="row">
             <div class="post container">
                 <div class="row">
                     <div class="header">
@@ -64,6 +65,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

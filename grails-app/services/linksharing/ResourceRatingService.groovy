@@ -5,7 +5,7 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class ResourceRatingService {
 
-    def serviceMethod() {
-
+    def save(ResourceRating rating) {
+        rating.save(flush:true)
     }
 }

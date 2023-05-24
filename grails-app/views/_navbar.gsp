@@ -17,6 +17,11 @@
 		<g:if test="${(params.controller=='profile' || params.controller=='allShow') && session.user}">
 			<g:render template="/dropdown"/>
 		</g:if>
+		<g:elseif test="${(params.controller=='topicShow' || params.controller=='viewPost') && session.user}">
+			<g:render template="/modal" model="[controller:'linkResource',action:'create']"/>
+			<g:render template="/modal" model="[controller:'documentResource',action:'create']"/>
+			<g:render template="/dropdown"/>
+		</g:elseif>
 		<g:elseif test="${session.user}">
 			<g:render template="/modal" model="[controller:'topic',action:'create']"/>
 			<g:render template="/modal" model="[controller:'invite',action:'create']"/>

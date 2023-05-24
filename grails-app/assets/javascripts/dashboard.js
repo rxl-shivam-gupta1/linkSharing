@@ -32,3 +32,38 @@ function editVisibility(topicId){
         })
     });
 }
+function Unsubscribe(topicId,userId){
+    $(document).ready(function(){
+        $.ajax({
+            url: '/Subscription/unsubscribeTopic',
+            type: 'POST',
+            data: {topicId:topicId,userId:userId},
+            success: function(response) {
+                // $('#topic_'+topicId).remove();
+                window.location.reload()
+            },
+            error: function(error) {
+
+            }
+
+        });
+    });
+}
+
+function subscribeTopic(topicId,userId){
+    $(document).ready(function(){
+        //var seriousness=document.getElementById('seriousness_'+topicId)?.value
+        $.ajax({
+            url: '/Subscription/subscribeTopic',
+            type: 'POST',
+            data: {topicId:topicId,userId:userId,seriousness:'CASUAL'},
+            success: function(response) {
+                window.location.reload()
+            },
+            error: function(error) {
+                console.log(error);
+            }
+
+        });
+    });
+}

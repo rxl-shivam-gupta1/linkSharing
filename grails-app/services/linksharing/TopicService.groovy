@@ -13,6 +13,14 @@ class TopicService {
         return  topicList
     }
 
+    List list(String max,String offset) {
+        List topicList
+        topicList = Topic.createCriteria().list(max:max,offset:offset) {
+            eq("visibility",Visibility.PUBLIC)
+        }
+        return  topicList
+    }
+
     Topic get(String name){
         Topic topic=Topic.findByName(name)
         return topic

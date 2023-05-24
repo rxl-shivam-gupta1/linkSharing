@@ -28,7 +28,8 @@
             </div>
         </g:elseif>
   		<div class="row">
-  			<div class="col-7">
+            <div class="col-6">
+  			<div class="row">
   			<div class="post container">
                 <div class="header">
                     <h3>Recent posts</h3>
@@ -39,25 +40,27 @@
                 </div>
   			</div>
   			</div>
-  			<div class="col">
-    			<g:render template="/login" />
+                <br>
+  			<div class="row">
+                <div class="post container">
+                    <div class="header">
+                        <h3>Trending posts</h3>
+                        <hr>
+                    </div>
+                    <g:render template="/login/posts"/>
+                </div>
     		</div>
     	</div>
-    	<br>
-    	<div class="row">
-  			<div class="col-7">
-  			<div class="post container">
-                <div class="header">
-                    <h3>Trending posts</h3>
-                    <hr>
-                </div>
-                <g:render template="/login/posts"/>
-            </div>
+    	<div class="col">
+  			<div class="row">
+                <g:render template="/login" />
   			</div>
-    		<div class="col">
+            <br>
+    		<div class="row">
     			<g:include view="user/create" />
     		</div>
         </div>
     </div>
+</div>
 </body>
 </html>

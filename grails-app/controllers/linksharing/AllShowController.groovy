@@ -32,4 +32,9 @@ class AllShowController {
         List subList=allShowService.subList(session.user)
         render view:"userSubs",model:[subs:subList]
     }
+
+    def topicSubs() {
+        List subList=allShowService.topicSubList(params.name)
+        render view:"topicSubs",model:[subs:subList]
+    }
 }

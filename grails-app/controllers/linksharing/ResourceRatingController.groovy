@@ -32,15 +32,6 @@ class ResourceRatingController {
             resourceRatingService.save(resourceRating)
         } catch (ValidationException e) {
             respond resourceRating.errors, view:'create'
-            return
-        }
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'resourceRating.label', default: 'ResourceRating'), resourceRating.id])
-                redirect resourceRating
-            }
-            '*' { respond resourceRating, [status: CREATED] }
         }
     }
 

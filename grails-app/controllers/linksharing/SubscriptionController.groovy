@@ -2,10 +2,12 @@ package linksharing
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.converters.JSON
 
 class SubscriptionController {
 
     SubscriptionService subscriptionService
+    SubscribeUnsubscribeService subscribeUnsubscribeService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -70,7 +72,31 @@ class SubscriptionController {
                         args: [message(code: 'subscription.label', default: 'Subscription'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
+
+        def subscribeTopic(){
+            if(!session.user){redirect(url:'/User')}
+            def topicId=params.topicId as Long
+            def userId=params.userId as Long
+            def seriousness=params.seriousness
+            if(subscribeUnsubscribeService.subscribe(topicId,userId,seriousness))
+            {
+                render([success:true] as JSON)
+            }else{
+                render([success:false] as JSON)
+            }
+        }
+
+        def unsubscribeTopic(){
+            if(!session.user){redirect(url:'/User')}
+            def topicId=params.topicId as Long
+            def userId=params.userId as Long
+            if(subscribeUnsubscribeService.unsubscribe(topicId,userId)){
+                render([success:true] as JSON)
+            }else{
+                render([success:false] as JSON)
+            }
+        }
 }

@@ -53,6 +53,7 @@ input[type=search]::-webkit-search-cancel-button {
 	top:20px;
 	background:lightgreen;
 	border-radius:25px;
+	margin-left:25px;
 }
 hr{
 	background:black;
