@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="main" />
         <asset:stylesheet src="css/bootstrap.css"/>
         <asset:stylesheet src="style1.css"/>
-        <g:set var="entityName" value="${message(code: 'topic.label', default: 'Topic')}" />
-        <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
     <body>
     <asset:javascript src="js/bootstrap.js"/>

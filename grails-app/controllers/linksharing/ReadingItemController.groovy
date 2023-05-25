@@ -2,6 +2,7 @@ package linksharing
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.converters.JSON
 
 class ReadingItemController {
 
@@ -94,6 +95,17 @@ class ReadingItemController {
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }
+        }
+    }
+
+    def markAsRead(){
+        if(!session.user){redirect(url:'/User')}
+        def resource=Resource.findById(params.resourceId as Long)
+        def user=session.user
+        if(readingItemService.markAsRead(user,resource)){
+            render([success:true] as JSON)
+        }else{
+            render([success:false] as JSON)
         }
     }
 }

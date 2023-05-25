@@ -25,8 +25,7 @@
                 <div class="row">
                     <div class="prof container">
                         <div class="row">
-                            <g:render template="/topicCard" model="[name:name,visibility:visibility,
-                                                                userName:userName,sub:sub,link:link,doc:doc]"/>
+                            <g:render template="/topicCard" model="[topic:topic,sub:sub,link:link,doc:doc]"/>
                         </div>
                     </div>
                 </div>
@@ -34,7 +33,7 @@
                     <div class="post container">
                         <div class="row">
                             <div class="header">
-                                <h3>Users: "${name}"</h3>
+                                <h3>Users: "${topic.name}"</h3>
                                 <hr>
                             </div>
                             <div id="post">
@@ -51,7 +50,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="header">
-                                <h3>Posts: "${name}"</h3>
+                                <h3>Posts: "${topic.name}"</h3>
                             </div>
                         </div>
                         <div class="col-6">

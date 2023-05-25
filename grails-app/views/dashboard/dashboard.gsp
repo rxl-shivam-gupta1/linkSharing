@@ -24,7 +24,8 @@
             <div class="col">
             <div class="row">
         	    <div class="prof container">
-        	        <g:render template="/userCard" model="[first:first,last:last,userName:name,topic:topic,sub:sub]"/>
+        	        <g:render template="/userCard" model="[first:first,last:last,userName:name,topic:topic,
+                                                           sub:sub]"/>
                 </div>
             </div>
             <div class="row">
@@ -35,7 +36,8 @@
                             <hr>
                         </div>
                         <div id="post">
-                            <g:render template="/login/posts" model="[type:'subscription',sList:subList, sCount:subCount]"/>
+                            <g:render template="/login/posts" model="[type:'subscription',sList:subList,
+                                                                      sCount:subCount]"/>
                         </div>
                     </div>
                 </div>
@@ -49,7 +51,8 @@
                             <h3>Inbox</h3>
                             <hr>
                         </div>
-                        <g:render template="/login/posts"/>
+                        <g:render template="/login/posts" model="[type:'inbox',iList:inboxList,
+                                                                  iCount:inboxCount]"/>
                     </div>
                 </div>
             </div>
@@ -61,7 +64,8 @@
                             <h3>Trending Topics</h3>
                             <hr>
                         </div>
-                        <g:render template="/login/posts" model="[type:'topic',tList:topicList,tCount:topicCount]"/>
+                        <g:render template="/login/posts" model="[type:'topic',tList:topicList,
+                                                                  tCount:topicCount]"/>
                     </div>
                 </div>
             </div>

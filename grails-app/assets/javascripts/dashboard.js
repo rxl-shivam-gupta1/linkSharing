@@ -67,3 +67,22 @@ function subscribeTopic(topicId,userId){
         });
     });
 }
+
+function markAsRead(resourceId) {
+    $(document).ready(function() {
+        $.ajax({
+            url: '/ReadingItem/markAsRead',
+            type: 'POST',
+            data: {
+                resourceId: resourceId
+            },
+            success: function(response) {
+                $('#resource_' + resourceId).remove();
+                window.location.reload();
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+}

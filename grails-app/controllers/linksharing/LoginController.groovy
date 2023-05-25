@@ -24,8 +24,14 @@ class LoginController {
         else if(user.passWord==params.passWord) {
             session.user = user
             redirect controller: "dashboard", action: "index"
-        }else
-            flash.pass="Incorrect password"
+        }else {
+            flash.warn = "Incorrect password"
+            redirect action: "index"
+        }
+    }
+
+    def forgotPass(){
+        render view:"/forgotPass",model:[controller:"forgotPassword"]
     }
 
 //    def list() {

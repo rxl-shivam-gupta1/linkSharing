@@ -1,4 +1,4 @@
-#userName,#passWord,#confirm,#image-upload,#firstName,#lastname,#email{
+#userName,#passWord,#confirm,#image-upload,#firstName,#lastname,#email,#newPass,#confirmPass{
 	display:inline;
 	font-size:100%;
 	border:2px solid black;
@@ -16,10 +16,7 @@
 	background:lightgreen;
 	border-radius:25px;
 }
-input[type="checkbox"]{
-	margin-bottom:20px;
-}
-.first,.last,.pass,.confirmpass,.emailid,.user,.image{
+.first,.last,.pass,.confirmpass,.emailid,.user,.image,.newPass,.confirmPass{
 	display:flex;
 	justify-content:space-between;
 }

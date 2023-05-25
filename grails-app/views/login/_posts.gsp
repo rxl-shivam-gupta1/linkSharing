@@ -12,7 +12,8 @@
                         <p>
                             ${p.topic.createdBy.firstName} ${p.topic.createdBy.lastName}
                             <g:link controller="profile" action="index"
-                                    params="[userName:p.topic.createdBy.userName]">@${p.topic.createdBy.userName}</g:link>
+                                    params="[userName:p.topic.createdBy.userName]">
+                                @${p.topic.createdBy.userName}</g:link>
                         </p>
                     </div>
                     <div class="topicName col">
@@ -33,11 +34,21 @@
                     <div class="col">
                         <g:if test="${(session.user.id==p.topic.createdBy.id) || session.user.admin==true}">
                         <div class="dropdown">
-                            <g:select class="form-select" id="visibility_${p.topic.id}" name="Visibility_${p.topic.id}"
-                                      value="${p.topic.visibility}" aria-label="Select visibility"
-                                      from="${Visibility.values()}" onclick="editVisibility('${p.topic.id}')">
+                            <g:select class="form-select" id="visibility_${p.topic.id}"
+                                      name="Visibility_${p.topic.id}" value="${p.topic.visibility}"
+                                      aria-label="Select visibility" from="${Visibility.values()}"
+                                      onclick="editVisibility('${p.topic.id}')">
                             </g:select>
                         </div>
+                        </g:if>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col manage">
+                        <g:render template="/modal" model="[controller:'dashboard']"/>
+                        <g:if test="${(session.user.id==p.topic.createdBy.id) || session.user.admin==true}">
+                            <asset:image src="writing.png"/>
+                            <asset:image src="bin.png"/>
                         </g:if>
                     </div>
                 </div>
@@ -57,7 +68,8 @@
                             <p>
                                 ${p.createdBy.firstName} ${p.createdBy.lastName}
                                 <g:link controller="profile" action="index"
-                                        params="[userName:p.createdBy.userName]">@${p.createdBy.userName}</g:link>
+                                        params="[userName:p.createdBy.userName]">@${p.createdBy.userName}
+                                </g:link>
                             </p>
                         </div>
                         <div class="topicName col">
@@ -70,10 +82,12 @@
                         <div class="col">
                             <g:if test="${session.user.userName!=p.createdBy.userName}">
                             <g:if test="${Subscription.findByUserAndTopic(session.user,p as Topic)}">
-                                <p><a href="#" onclick="Unsubscribe(${p.id},${session.user.id})">Unsubscribe</a></p>
+                                <p><a href="#" onclick="Unsubscribe(${p.id},${session.user.id})">Unsubscribe</a>
+                                </p>
                             </g:if>
                             <g:else>
-                                <p><a href="#" onclick="subscribeTopic(${p.id},${session.user.id})">Subscribe</a></p>
+                                <p><a href="#" onclick="subscribeTopic(${p.id},${session.user.id})">Subscribe
+                                </a></p>
                             </g:else>
                             </g:if>
                         </div>
@@ -82,6 +96,50 @@
                 </g:each>
                 <div class="pagination">
                     <g:paginate total="${tCount ?: 0}" max="5" maxsteps="3"/>
+                </div>
+            </g:if>
+            <g:if test="${type=='inbox'}">
+                <g:each in="${iList}" var="p">
+                    <div class="row">
+                        <div class="col-2">
+                            <asset:image src="user (2).png"/>
+                        </div>
+                        <div class="col-4">
+                            <p>
+                                ${p.user.firstName} ${p.user.lastName}
+                                <g:link controller="profile" action="index"
+                                        params="[userName:p.user.userName]">@${p.user.userName}</g:link>
+                            </p>
+                        </div>
+                        <div class="topicName col">
+                            <g:link controller="topicShow" action="index" params="[name:p.resource.topic.name]">
+                                ${p.resource.topic.name}
+                            </g:link>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <g:if test="${p.resource.url}"><a href="${p.resource.url}">${p.resource.url}</a>
+                            </g:if>
+                            <g:else>${p.resource.filePath}</g:else>
+                        </div>
+                    </div>
+                    <div class="row">
+                        ${p.resource.description}
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="#" onclick="markAsRead(${p.resource.id})">Mark as Read</a>
+                        </div>
+                        <div class="col">
+                            <g:link controller="viewPost" action="index" params="[name:p.resource.topic.name,
+                                                                         id:p.resource.id]">View Post</g:link>
+                        </div>
+                    </div>
+                    <hr>
+                </g:each>
+                <div class="pagination">
+                    <g:paginate total="${iCount ?: 0}" max="5" maxsteps="3"/>
                 </div>
             </g:if>
         </g:if>
@@ -112,16 +170,18 @@
             </div>
         </g:elseif>
         <g:elseif test="${params.controller=='profile'}">
-            <g:each in="${tList}" var="p">
+            <g:if test="${type=='subscription'}">
+            <g:each in="${sList}" var="p">
                 <div class="row">
                     <div class="col-2">
                         <asset:image src="user (2).png"/>
                     </div>
                     <div class="col-4">
                         <p>
-                            ${p.user.firstName} ${p.user.lastName}
+                            ${p.topic.createdBy.firstName} ${p.topic.createdBy.lastName}
                             <g:link controller="profile" action="index"
-                                    params="[userName:p.user.userName]">@${p.user.userName}</g:link>
+                                  params="[userName:p.topic.createdBy.userName]">@${p.topic.createdBy.userName}
+                            </g:link>
                         </p>
                     </div>
                     <div class="topicName col">
@@ -143,9 +203,10 @@
                     <div class="col">
                         <g:if test="${session.user.id}==${p.topic.createdBy.id}">
                             <div class="dropdown">
-                                <g:select class="form-select" id="visibility_${p.topic.id}" name="Visibility_${p.topic.id}"
-                                          value="${p.topic.visibility}" aria-label="Select visibility"
-                                          from="${Visibility.values()}" onclick="editVisibility('${p.topic.id}')">
+                                <g:select class="form-select" id="visibility_${p.topic.id}"
+                                          name="Visibility_${p.topic.id}" value="${p.topic.visibility}"
+                                          aria-label="Select visibility" from="${Visibility.values()}"
+                                          onclick="editVisibility('${p.topic.id}')">
                                 </g:select>
                             </div>
                         </g:if>
@@ -154,6 +215,11 @@
                 </g:if>
                 <hr>
             </g:each>
+            <div class="pagination">
+                <g:paginate total="${sCount ?: 0}" max="5" maxsteps="3"/>
+            </div>
+            </g:if>
+            <g:if test="${type=='post'}">
             <g:each in="${rList}" var="p">
                 <div class="row">
                     <div class="col-2">
@@ -174,7 +240,7 @@
                 <div class="row">
                     <div class="col">
                         <g:if test="${p.url}"><a href="${p.url}">${p.url}</a></g:if>
-                        <g:else>${p.filepath}</g:else>
+                        <g:else>${p.filePath}</g:else>
                     </div>
                 </div>
                 <div class="row">
@@ -182,6 +248,50 @@
                 </div>
                 <hr>
             </g:each>
+            <div class="pagination">
+                <g:paginate total="${rCount ?: 0}" max="5" maxsteps="3"/>
+            </div>
+            </g:if>
+            <g:if test="${type=='topic'}">
+                <g:each in="${tList}" var="p">
+                    <div class="row">
+                        <div class="col-2">
+                            <asset:image src="user (2).png"/>
+                        </div>
+                        <div class="col-4">
+                            <p>
+                                ${p.createdBy.firstName} ${p.createdBy.lastName}
+                                <g:link controller="profile" action="index"
+                                        params="[userName:p.createdBy.userName]">@${p.createdBy.userName}
+                                </g:link>
+                            </p>
+                        </div>
+                        <div class="topicName col">
+                            <g:link controller="topicShow" action="index" params="[name:p.name]">
+                                ${p.name}
+                            </g:link>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <g:if test="${session.user.userName!=p.createdBy.userName}">
+                                <g:if test="${Subscription.findByUserAndTopic(session.user,p as Topic)}">
+                                    <p><a href="#" onclick="Unsubscribe(${p.id},${session.user.id})">
+                                        Unsubscribe</a></p>
+                                </g:if>
+                                <g:else>
+                                    <p><a href="#" onclick="subscribeTopic(${p.id},${session.user.id})">
+                                        Subscribe</a></p>
+                                </g:else>
+                            </g:if>
+                        </div>
+                    </div>
+                    <hr>
+                </g:each>
+                <div class="pagination">
+                    <g:paginate total="${tCount ?: 0}" max="5" maxsteps="3"/>
+                </div>
+            </g:if>
         </g:elseif>
         <g:elseif test="${params.controller=='topicShow'}">
             <g:if test="${type=='user'}">
@@ -233,7 +343,8 @@
                         ${p.description}
                     </div>
                     <div class="row">
-                        <g:link controller="viewPost" action="index" params="[topic:p.topic.name]">View Post</g:link>
+                        <g:link controller="viewPost" action="index" params="[name:p.topic.name,id:p.id]">
+                            View Post</g:link>
                     </div>
                     <hr>
                 </g:each>

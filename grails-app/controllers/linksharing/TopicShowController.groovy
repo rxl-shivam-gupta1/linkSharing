@@ -11,8 +11,7 @@ class TopicShowController {
         List links=linkResourceService.resList(topic.name)
         List docs=docResourceService.resList(topic.name)
         List res=links+docs
-        render view:"/topic/show",model:[name:topic.name,visibility:topic.visibility,
-                                         userName:topic.createdBy.userName,sub:subs,link:links,doc:docs,
+        render view:"/topic/show",model:[topic:topic,sub:subs,link:links,doc:docs,
                                          userList:subs,userCount:subs.size(),resList:res,resCount:res.size()]
     }
 }

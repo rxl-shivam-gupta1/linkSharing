@@ -7,6 +7,13 @@ class DocumentResourceService {
 
     String save(DocumentResource doc){
         doc.save(flush:true)
+        for(a in User.list()){
+            ReadingItem readingItem=new ReadingItem()
+            readingItem.resource=doc
+            readingItem.user=a
+            readingItem.isRead=false
+            readingItem.save(flush:true)
+        }
         return "Added Document Resource"
     }
 

@@ -18,5 +18,12 @@
                     <p>Subscriptions:<g:link controller="allShow" action="userSubs">${sub.size}</g:link></p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <g:if test="${session.user.userName==userName && params.controller=='profile'}">
+                        <g:link controller="editProfile" action="index">Edit Profile</g:link>
+                    </g:if>
+                </div>
+            </div>
         </div>
     </div>

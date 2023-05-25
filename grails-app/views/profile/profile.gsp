@@ -27,7 +27,7 @@
                         <h3>Subscriptions</h3>
                         <hr>
                     </div>
-                    <g:render template="/login/posts" model="[tList:subList, tCount:subCount]"/>
+                    <g:render template="/login/posts" model="[type:'subscription',sList:subList, sCount:subCount]"/>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <hr>
-                    <g:render template="/login/posts" model="[rList:resList, rCount:resCount]"/>
+                    <g:render template="/login/posts" model="[type:'post',rList:resList, rCount:resCount]"/>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
                         <h3>Trending Topics</h3>
                         <hr>
                     </div>
-                    <g:render template="/login/posts"/>
+                    <g:render template="/login/posts" model="[type:'topic',tList:topicList,tCount:topicCount]"/>
                 </div>
             </div>
         </div>

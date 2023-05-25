@@ -7,6 +7,13 @@ class LinkResourceService {
 
     String save(LinkResource link){
         link.save(flush:true)
+        for(user in User.list()){
+            ReadingItem readingItem=new ReadingItem()
+            readingItem.resource=link
+            readingItem.user=user
+            readingItem.isRead=false
+            readingItem.save(flush:true)
+        }
         return "Added Link Resource"
     }
 

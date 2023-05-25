@@ -14,7 +14,8 @@
    				<input class="form-control" type="search" placeholder="Search" aria-label="Search"/>
 			</div>
    	    </div>
-		<g:if test="${(params.controller=='profile' || params.controller=='allShow') && session.user}">
+		<g:if test="${(params.controller=='profile' || params.controller=='allShow' ||
+				params.controller=='editProfile') && session.user}">
 			<g:render template="/dropdown"/>
 		</g:if>
 		<g:elseif test="${(params.controller=='topicShow' || params.controller=='viewPost') && session.user}">
