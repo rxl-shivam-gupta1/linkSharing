@@ -19,7 +19,8 @@ class DocumentResourceController {
     }
 
     def create() {
-        respond new DocumentResource(params)
+        documentResourceService.create(params)
+        redirect controller:"dashboard",action:"index"
     }
 
     def save(DocumentResource documentResource) {

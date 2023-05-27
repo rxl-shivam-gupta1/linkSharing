@@ -6,7 +6,6 @@
     <asset:stylesheet src="style1.css"/>
     <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="css/bootstrap.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 </head>
 <body>
 <asset:javascript src="js/bootstrap.js"/>
@@ -25,9 +24,12 @@
             <div class="row">
                 <div class="prof container">
                     <div class="row">
-                        <g:render template="/postCard" model="[firstName:firstName,lastName:lastName,
-                                                                userName:userName,topicName:topicName,
-                                                               description:description]"/>
+                        <g:if test="${link}">
+                        <g:render template="/postLink" model="[link:link, ratingScore:ratingScore]"/>
+                        </g:if>
+                        <g:elseif test="${doc}">
+                            <g:render template="/postDoc" model="[doc:doc, ratingScore:ratingScore]"/>
+                        </g:elseif>
                     </div>
                 </div>
             </div>

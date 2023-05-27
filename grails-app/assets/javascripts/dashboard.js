@@ -86,3 +86,89 @@ function markAsRead(resourceId) {
         });
     });
 }
+
+function editTopicName(topicId) {
+    $(document).ready(function () {
+        $('#topicName_' + topicId).hide();
+        $('#editTopicClass_' + topicId).show();
+    });
+}
+function cancelTopic(topicId) {
+    $(document).ready(function () {
+        $('#topicName_' + topicId).show();
+        $('#editTopicClass_' + topicId).hide();
+    });
+}
+function saveTopic(topicId) {
+    $(document).ready(function () {
+        var newTopicName = $('input[name="newTopicName"]').val();
+        console.log(newTopicName)
+
+        $.ajax({
+            url: '/editSubscribedTopic/index',
+            type: 'POST',
+            data: {id: topicId, name: newTopicName},
+            success: function (response) {
+                $('#topicName_' + topicId).text(newTopicName).show();
+                $('#editTopicClass_' + topicId).hide();
+                window.location.reload()
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+}
+
+function deleteTopic(topicId){
+    $(document).ready(function(){
+        $.ajax({
+            url: '/editSubscribedTopic/deleteTopic',
+            type: 'POST',
+            data: {topicId:topicId},
+            success: function(response) {
+                // $('#topic_'+topicId).remove()
+                // $('#manage_'+topicId).remove()
+                // $('#edit_'+topicId).remove()
+                window.location.reload()
+            },
+            error: function(error) {
+                console.log(error);
+            }
+
+        });
+    });
+}
+
+function editTrendingTopicName(topicId) {
+    $(document).ready(function () {
+        $('#trendingTopicName_' + topicId).hide();
+        $('#editTrendingTopicClass_' + topicId).show();
+    });
+}
+function cancelTrendingTopic(topicId) {
+    $(document).ready(function () {
+        $('#trendingTopicName_' + topicId).show();
+        $('#editTrendingTopicClass_' + topicId).hide();
+    });
+}
+function saveTrendingTopic(topicId) {
+    $(document).ready(function () {
+        var newTopicName = $('input[name="newTopicName"]').val();
+        console.log(newTopicName)
+
+        $.ajax({
+            url: '/editSubscribedTopic/index',
+            type: 'POST',
+            data: {id: topicId, name: newTopicName},
+            success: function (response) {
+                $('#rendingTopicName_' + topicId).text(newTopicName).show();
+                $('#editTrendingTopicClass_' + topicId).hide();
+                window.location.reload()
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+}

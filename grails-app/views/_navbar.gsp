@@ -10,7 +10,7 @@
    		</div>
    		<div class="col">
    			<div class="form-group has-search">
-   				<span class="fa fa-search form-control-feedback"></span>
+   				<span class="form-control-feedback"><asset:image src="search.png"/></span>
    				<input class="form-control" type="search" placeholder="Search" aria-label="Search"/>
 			</div>
    	    </div>

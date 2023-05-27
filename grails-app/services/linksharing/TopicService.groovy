@@ -32,7 +32,8 @@ class TopicService {
 
     void delete(Serializable id){}
 
-    def save(Topic topic){
+    String save(Topic topic){
         topic.save(flush:true)
+        return "Created New Topic"
     }
 }

@@ -30,7 +30,7 @@ class TopicController {
         }
 
         try {
-            topicService.save(topic)
+            flash.message=topicService.save(topic)
         } catch (ValidationException e) {
             respond topic.errors, view:'create'
         }

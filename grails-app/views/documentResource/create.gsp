@@ -8,29 +8,26 @@
     <body>
     <asset:javascript src="js/bootstrap.js"/>
         <div id="create-documentResource" class="content scaffold-create" role="main">
-            <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${this.documentResource}">
-            <ul class="errors" role="alert">
-                <g:eachError bean="${this.documentResource}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                </g:eachError>
-            </ul>
-            </g:hasErrors>
-            <g:form resource="${this.documentResource}" method="POST">
-                <fieldset class="form">
-                    <f:field bean="documentResource" property="description"><g:textArea name="description"/></f:field>
-                    <f:field bean="documentResource" property="filePath"><input type="file"/></f:field>
-                    <div class="hidden">
-                        <f:field bean="documentResource" property="createdBy" value="${session.user}"/>
-                    </div>
-                    <f:field bean="documentResource" property="topic">
-                        <g:select from="${Topic.list()}" name="topic" optionKey="id" optionValue="name"/>
-                    </f:field>
-                </fieldset>
-                <g:submitButton name="create" class="save btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-            </g:form>
+        <g:uploadForm controller="documentResource" action="create">
+            <div class="form-group">
+                <label>Document</label>
+                <div class="custom-file">
+                    <input type="file"  id="documentResource" name="documentResource" required>
+                </div>
+            </div><div id="documentResourceErrorMessage" style="display: none; color: red;"></div>
+            <div class="form-group">
+                <label >Description</label>
+                <textarea class="form-control" id="documentDescription" name="documentDescription" rows="3" required></textarea>
+            </div><div id="documentDescriptionErrorMessage" style="display: none; color: red;"></div>
+            <div class="hidden">
+                <input name="userId" type="text" value="${user.id}"/>
+            </div>
+            <div class="form-group">
+                <label >Topic</label>
+                <g:select name="documentTopic" id="documentTopic" from="${Topic.list()}" optionValue="${{topic -> topic.name}}" optionKey="${{topic -> topic.id}}" required="true" class="form-control"/>
+            </div>
+            <g:submitButton id="shareDocument" name="Share" class="btn btn-primary">Share</g:submitButton>
+        </g:uploadForm>
         </div>
     </body>
 </html>

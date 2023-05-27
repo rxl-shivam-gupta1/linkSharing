@@ -12,9 +12,6 @@
         <g:elseif test="${controller=="documentResource"}">
             <asset:image src="add-file.png"/>
         </g:elseif>
-        <g:elseif test="${controller=='dashboard'}">
-            <asset:image src="mail.png"/>
-        </g:elseif>
     </div>
 </button>
 
@@ -25,7 +22,7 @@
                 <g:if test="${controller=="topic"}">
                     <h5 class="modal-title" id="exampleModalLabel">Create Topic</h5>
                 </g:if>
-                <g:elseif test="${controller=="invite" || controller=="dashboard"}">
+                <g:elseif test="${controller=="invite"}">
                     <h5 class="modal-title" id="exampleModalLabel">Send Invite</h5>
                 </g:elseif>
                 <g:elseif test="${controller=="linkResource"}">
@@ -42,14 +39,14 @@
                 <g:if test="${controller=="topic"}">
                     <g:include view="topic/create"/>
                 </g:if>
-                <g:elseif test="${controller=="invite" || controller=="dashboard"}">
-                    <g:include view="invite/create.gsp"/>
+                <g:elseif test="${controller=="invite"}">
+                    <g:include view="invite/create.gsp" params="[function:'invite']"/>
                 </g:elseif>
                 <g:elseif test="${controller=="linkResource"}">
                     <g:include view="linkResource/create"/>
                 </g:elseif>
                 <g:elseif test="${controller=="documentResource"}">
-                    <g:include view="documentResource/create"/>
+                    <g:include view="documentResource/create.gsp" model="[user:session.user]"/>
                 </g:elseif>
             </div>
         </div>

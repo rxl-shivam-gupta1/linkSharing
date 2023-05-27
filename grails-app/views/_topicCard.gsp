@@ -12,7 +12,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <p>Subscriptions:<g:link controller="allShow" action="topicSubs" params="[name:name]">${sub.size}</g:link></p>
+                <p>Subscriptions:<g:link controller="allShow" action="topicSubs" params="[name:topic.name]">${sub.size}</g:link></p>
             </div>
             <div class="col">
                 <p>Posts:${link.size+doc.size}</p>

@@ -4,25 +4,35 @@
         <g:if test="${params.controller=='dashboard' || params.controller=='viewPost'}">
             <g:if test="${type=='subscription'}">
             <g:each in="${sList}" var="p">
-                <div class="row">
-                    <div class="col-2">
+                <div class="row" id="topic_${p.topic.id}">
+                    <div class="col-3">
                             <asset:image src="user (2).png"/>
                     </div>
                     <div class="col-4">
                         <p>
-                            ${p.topic.createdBy.firstName} ${p.topic.createdBy.lastName}
+                            <div class="topicName" id="topicName_${p.topic.id}">
+                            <g:link controller="topicShow" action="index" params="[name:p.topic.name]">
+                                ${p.topic.name}
+                            </g:link>
+                    </div>
+                        <div class="edit-form" id="editTopicClass_${p.topic.id}" style="display:none;">
+                            <form>
+                                <input type="text" name="newTopicName" required>
+                                <button type="button" onclick="saveTopic('${p.topic.id}')" class="save-button"
+                                        id="saveTrendingTopic_${p.topic.id}">Save</button>
+                                <button type="button" onclick="cancelTopic('${p.topic.id}')" class="cancel-button"
+                                        id="cancelTrendingTopic_${p.topic.id}">Cancel</button>
+                            </form>
+                        </div>
+                        <div>
                             <g:link controller="profile" action="index"
                                     params="[userName:p.topic.createdBy.userName]">
                                 @${p.topic.createdBy.userName}</g:link>
+                        </div>
                         </p>
                     </div>
-                    <div class="topicName col">
-                        <g:link controller="topicShow" action="index" params="[name:p.topic.name]">
-                            ${p.topic.name}
-                        </g:link>
-                    </div>
                 </div>
-                <div class="row">
+                <div class="row" id="manage_${p.topic.id}">
                     <div class="col">
                         <div class="dropdown">
                             <g:select class="form-select" id="seriousness_${p.id}" name="seriousness_${p.id}"
@@ -43,16 +53,19 @@
                         </g:if>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="edit_${p.topic.id}">
                     <div class="col manage">
-                        <g:render template="/modal" model="[controller:'dashboard']"/>
+                        <g:render template="/sendInvite" model="[topicId:p.topic.id]"/>
                         <g:if test="${(session.user.id==p.topic.createdBy.id) || session.user.admin==true}">
-                            <asset:image src="writing.png"/>
-                            <asset:image src="bin.png"/>
+                            <button type="button"  id="editTrendingTopic_${p.topic.id}" class="btn btn-link
+                            chat-icon" onclick="editTopicName(${p.topic.id})"><asset:image src="writing.png"/>
+                            </button>
+                            <button type="button"  id="deleteTopic_${p.topic.id}" class="btn btn-link chat-icon"
+                                    onclick="deleteTopic(${p.topic.id})"><asset:image src="bin.png"/></button>
                         </g:if>
                     </div>
+                    <hr>
                 </div>
-                <hr>
             </g:each>
             <div class="pagination">
                 <g:paginate total="${sCount ?: 0}" max="5" maxsteps="3"/>
@@ -61,21 +74,31 @@
             <g:if test="${type=='topic'}">
                 <g:each in="${tList}" var="p">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-3">
                             <asset:image src="user (2).png"/>
                         </div>
                         <div class="col-4">
                             <p>
-                                ${p.createdBy.firstName} ${p.createdBy.lastName}
+                                <div class="topicName" id="trendingTopicName_${p.id}">
+                                <g:link controller="topicShow" action="index" params="[name:p.name]">
+                                    ${p.name}
+                                </g:link>
+                        </div>
+                            <div class="edit-form" id="editTrendingTopicClass_${p.id}" style="display:none;">
+                                <form>
+                                    <input type="text" name="newTopicName" required>
+                                    <button type="button" onclick="saveTrendingTopic('${p.id}')"
+                                            class="save-button" id="saveTrendingTopic_${p.id}">Save</button>
+                                    <button type="button" onclick="cancelTrendingTopic('${p.id}')"
+                                            class="cancel-button" id="cancelTrendingTopic_${p.id}">Cancel</button>
+                                </form>
+                            </div>
+                            <div>
                                 <g:link controller="profile" action="index"
                                         params="[userName:p.createdBy.userName]">@${p.createdBy.userName}
                                 </g:link>
+                            </div>
                             </p>
-                        </div>
-                        <div class="topicName col">
-                            <g:link controller="topicShow" action="index" params="[name:p.name]">
-                                ${p.name}
-                            </g:link>
                         </div>
                     </div>
                     <div class="row">
@@ -92,7 +115,19 @@
                             </g:if>
                         </div>
                     </div>
-                    <hr>
+                    <div class="row" id="edit_${p.id}">
+                        <div class="col manage">
+                            <g:render template="/sendInvite" model="[topicId:p.id]"/>
+                            <g:if test="${(session.user.id==p.createdBy.id) || session.user.admin==true}">
+                                <button type="button"  id="editTrendingTopic_${p.id}" class="btn btn-link
+                            chat-icon" onclick="editTrendingTopicName(${p.id})"><asset:image src="writing.png"/>
+                                </button>
+                                <button type="button"  id="deleteTopic_${p.id}" class="btn btn-link chat-icon"
+                                        onclick="deleteTopic(${p.id})"><asset:image src="bin.png"/></button>
+                            </g:if>
+                        </div>
+                        <hr>
+                    </div>
                 </g:each>
                 <div class="pagination">
                     <g:paginate total="${tCount ?: 0}" max="5" maxsteps="3"/>
@@ -101,7 +136,7 @@
             <g:if test="${type=='inbox'}">
                 <g:each in="${iList}" var="p">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-3">
                             <asset:image src="user (2).png"/>
                         </div>
                         <div class="col-4">
@@ -119,9 +154,9 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <g:if test="${p.resource.url}"><a href="${p.resource.url}">${p.resource.url}</a>
+                            <g:if test="${p.resource.class=='linksharing.LinkResource'}"><a href="${p.resource.url}">${p.resource.url}</a>
                             </g:if>
-                            <g:else>${p.resource.filePath}</g:else>
+                            <g:elseif test="${p.resource.class=='linksharing.DocumentResource'}">${p.resource.filePath}</g:elseif>
                         </div>
                     </div>
                     <div class="row">
@@ -246,6 +281,10 @@
                 <div class="row">
                     ${p.description}
                 </div>
+                <div class="col">
+                    <g:link controller="viewPost" action="index" params="[name:p.topic.name,
+                                                                          id:p.id]">View Post</g:link>
+                </div>
                 <hr>
             </g:each>
             <div class="pagination">
@@ -335,8 +374,8 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <g:if test="${p.url}"><a href="${p.url}">${p.url}</a></g:if>
-                            <g:else>${p.filePath}</g:else>
+                            <g:if test="${p.class=='linksharing.LinkResource'}"><a href="${p.url}">${p.url}</a></g:if>
+                            <g:elseif test="${p.class=='linksharing.DocumentResource'}">${p.filePath}</g:elseif>
                         </div>
                     </div>
                     <div class="row">

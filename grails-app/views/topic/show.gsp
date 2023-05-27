@@ -6,7 +6,6 @@
         <asset:stylesheet src="style1.css"/>
         <asset:stylesheet src="application.css"/>
         <asset:stylesheet src="css/bootstrap.css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </head>
     <body>
     <asset:javascript src="js/bootstrap.js"/>
@@ -55,13 +54,13 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group has-search">
-                                <span class="fa fa-search form-control-feedback"></span>
+                                <span class="form-control-feedback"><asset:image src="search.png"/></span>
                                 <input class="form-control" type="search" placeholder="Search" aria-label="Search"/>
                             </div>
                         </div>
                         <hr>
                     </div>
-                    <g:render template="/login/posts" model="[type:'post',rList:resList, rCount:resCount]"/>
+                    <g:render template="/login/posts" model="[type:'post',rList:resList,rCount:resCount]"/>
                 </div>
             </div>
             </div>

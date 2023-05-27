@@ -7,16 +7,6 @@
     <body>
     <asset:javascript src="js/bootstrap.js"/>
         <div id="create-topic" class="content scaffold-create" role="main">
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${this.topic}">
-                <ul class="errors" role="alert">
-                    <g:eachError bean="${this.topic}" var="error">
-                        <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                    </g:eachError>
-                </ul>
-            </g:hasErrors>
             <g:form resource="${this.topic}" method="POST">
                 <fieldset class="form">
                     <f:field bean="topic" property="name"/>
