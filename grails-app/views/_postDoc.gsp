@@ -1,7 +1,7 @@
 <%@ page import="linksharing.ResourceRating" %>
 <div class="row">
     <div class="col-4">
-        <asset:image src="user (1).png"/>
+        <g:img dir="images" id="profilePhoto"  file="${doc.createdBy.photo}" width="100" height="100"/>
     </div>
     <div class="col">
         <div class="row">

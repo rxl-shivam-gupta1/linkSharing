@@ -30,10 +30,13 @@
             <div class="row">
                 <div class="post container">
                     <div class="row">
-                        <div class="header">
+                        <div class="col header">
                             <h3>Subscriptions</h3>
-                            <hr>
                         </div>
+                        <div class="col">
+                            <g:link controller="allShow" action="userSubs">View all</g:link>
+                        </div>
+                        <hr>
                         <div id="post">
                             <g:render template="/login/posts" model="[type:'subscription',sList:subList,
                                                                       sCount:subCount]"/>

@@ -40,3 +40,37 @@ function deleteTopic(topicId){
         });
     });
 }
+function deleteSub(subId){
+    $(document).ready(function() {
+        $('.delete_'+subId).click(function() {
+            $.ajax({
+                url: '/Admin/deleteSub',
+                type: 'POST',
+                data: {subId: subId},
+                success: function(response) {
+                    $('#deleteSub_'+subId).closest('tr').remove();
+                },
+                error: function(xhr) {
+                    alert('Error: ' + xhr.status);
+                }
+            });
+        });
+    });
+}
+function deletePost(postId){
+    $(document).ready(function() {
+        $('.delete_'+postId).click(function() {
+            $.ajax({
+                url: '/Admin/deletePost',
+                type: 'POST',
+                data: {postId: postId},
+                success: function(response) {
+                    $('#deletePost_'+postId).closest('tr').remove();
+                },
+                error: function(xhr) {
+                    alert('Error: ' + xhr.status);
+                }
+            });
+        });
+    });
+}

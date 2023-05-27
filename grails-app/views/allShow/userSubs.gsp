@@ -6,7 +6,6 @@
     <asset:stylesheet src="style1.css"/>
     <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="css/bootstrap.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 </head>
 <body>
 <asset:javascript src="js/bootstrap.js"/>
@@ -38,7 +37,7 @@
                             <td id="dateCreated_${sub.id}">${sub.dateCreated}</td>
                             <td id="visibility_${sub.id}">${sub.seriousness}</td>
                             <td class="delete_${sub.id}">
-                                <a id="deletesub_${sub.id}" href="#"  data-sub-id="${sub.id}"  onclick="deletesub(${sub.id})">
+                                <a id="deleteSub_${sub.id}" href="#"  data-sub-id="${sub.id}"  onclick="deleteSub(${sub.id})">
                                     Delete
                                 </a>
                             </td>

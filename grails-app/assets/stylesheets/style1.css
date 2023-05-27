@@ -102,3 +102,6 @@ hr{
 	-moz-border-radius: 0 6px 6px;
 	border-radius: 0 6px 6px 6px;
 }
+.image{
+	border-radius:100%;
+}

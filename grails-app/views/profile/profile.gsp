@@ -10,6 +10,7 @@
 <asset:javascript src="js/bootstrap.js"/>
 <asset:javascript src="application.js"/>
 <asset:javascript src="myJQuery.js"/>
+<asset:javascript src="inputValidation.js"/>
 <div class="container">
     <g:render template="/navbar"/>
     <div class="row">

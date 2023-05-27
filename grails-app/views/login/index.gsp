@@ -46,7 +46,7 @@
                         <h3>Trending posts</h3>
                         <hr>
                     </div>
-                    <g:render template="/login/posts"/>
+                    <g:render template="/login/posts" model="[tList:topicList, tCount:topicCount]"/>
                 </div>
     		</div>
     	</div>

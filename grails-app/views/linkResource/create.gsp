@@ -10,7 +10,9 @@
         <div id="create-linkResource" class="content scaffold-create" role="main">
             <g:form resource="${this.linkResource}" method="POST">
                 <fieldset class="form">
-                    <f:field bean="linkResource" property="description"><g:textArea name="description"/></f:field>
+                    <f:field bean="linkResource" property="description">
+                        <g:textArea name="description" required="true"/>
+                    </f:field>
                     <f:field bean="linkResource" property="url"/>
                     <div class="hidden">
                         <f:field bean="linkResource" property="createdBy" value="${session.user}"/>

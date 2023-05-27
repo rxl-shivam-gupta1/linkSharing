@@ -1,7 +1,7 @@
 <%@ page import="linksharing.Subscription" %>
 <div class="row">
     <div class="col-4">
-        <asset:image src="user (1).png"/>
+        <g:img dir="images" id="profilePhoto"  file="${session.user.photo}" width="120" height="120"/>
     </div>
     <div class="col">
         <div class="row">

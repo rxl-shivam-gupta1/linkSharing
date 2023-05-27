@@ -6,7 +6,6 @@
     <asset:stylesheet src="style1.css"/>
     <asset:stylesheet src="application.css"/>
     <asset:stylesheet src="css/bootstrap.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 </head>
 <body>
 <asset:javascript src="js/bootstrap.js"/>
@@ -52,7 +51,7 @@
                                 <td id="filepath_${post.id}">${post.filePath}</td>
                             </g:else>
                             <td class="delete_${post.id}">
-                                <a id="deletepost_${post.id}" href="#"  data-post-id="${post.id}"  onclick="deletepost(${post.id})">
+                                <a id="deletePost_${post.id}" href="#"  data-post-id="${post.id}"  onclick="deletePost(${post.id})">
                                     Delete
                                 </a>
                             </td>

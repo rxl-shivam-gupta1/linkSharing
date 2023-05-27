@@ -9,7 +9,7 @@
                     </g:eachError>
                 </ul>
             </g:hasErrors>
-            <g:form class="register" resource="${this.user}" method="POST">
+            <g:uploadForm class="register" controller="user" action="save">
                 <div class="header">
                     <h1>Register</h1>
                 </div>
@@ -46,7 +46,7 @@
             		    <g:submitButton class="btn btn-dark" name="submit" value="Register"/>
             	    </div>
                 </div>
-            </g:form>
+            </g:uploadForm>
         </div>
     </body>
 </html>
