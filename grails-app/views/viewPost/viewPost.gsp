@@ -11,6 +11,7 @@
 <asset:javascript src="js/bootstrap.js"/>
 <asset:javascript src="application.js"/>
 <asset:javascript src="dashboard.js"/>
+<asset:javascript src="admin.js"/>
 <div class="container">
     <g:render template="/navbar"/>
     <g:if test="${flash.message}">
@@ -25,7 +26,7 @@
                 <div class="prof container">
                     <div class="row">
                         <g:if test="${link}">
-                        <g:render template="/postLink" model="[link:link, ratingScore:ratingScore]"/>
+                            <g:render template="/postLink" model="[link:link, ratingScore:ratingScore]"/>
                         </g:if>
                         <g:elseif test="${doc}">
                             <g:render template="/postDoc" model="[doc:doc, ratingScore:ratingScore]"/>

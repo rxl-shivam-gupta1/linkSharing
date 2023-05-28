@@ -42,6 +42,10 @@ class AdminController {
     def deletePost(){
         if(!session.user){redirect(url:'/User')}
         def post=Resource.get(params.postId as Long)
+        def readingItem=ReadingItem.findAllByResource(post)
+        def rating=ResourceRating.findAllByResource(post)
+        rating.each{it.delete(flush:true,failOnError:true)}
+        readingItem.each{it.delete(flush:true,failOnError:true)}
         post.delete(flush:true,failOnError:true)
         def deletedPost=Resource.get(params.postId as Long)
         if(!deletedPost) {

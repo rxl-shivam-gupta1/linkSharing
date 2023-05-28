@@ -61,9 +61,6 @@ hr{
 	margin:25px;
 	padding:20px;
 }
-.topicName{
-	text-align:right;
-}
 .pagination{
 	display:flex;
 	justify-content:center;

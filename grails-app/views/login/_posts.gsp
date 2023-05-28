@@ -19,10 +19,10 @@
                             <form>
                                 <input type="text" name="newTopicName" required>
                                 <button type="button" onclick="saveTopic('${p.topic.id}')"
-                                        class="save-button btn btn-primary" id="saveTrendingTopic_${p.topic.id}">
+                                        class="save-button btn btn-primary" id="saveTopic_${p.topic.id}">
                                     Save</button>
                                 <button type="button" onclick="cancelTopic('${p.topic.id}')"
-                                  class="cancel-button btn btn-primary" id="cancelTrendingTopic_${p.topic.id}">
+                                  class="cancel-button btn btn-primary" id="cancelTopic_${p.topic.id}">
                                     Cancel</button>
                             </form>
                         </div>
@@ -59,7 +59,7 @@
                     <div class="col manage">
                         <g:render template="/sendInvite" model="[topicId:p.topic.id]"/>
                         <g:if test="${(session.user.id==p.topic.createdBy.id) || session.user.admin==true}">
-                            <button type="button"  id="editTrendingTopic_${p.topic.id}" class="btn btn-link"
+                            <button type="button"  id="editTopic_${p.topic.id}" class="btn btn-link"
                                     onclick="editTopicName(${p.topic.id})"><asset:image src="writing.png"/>
                             </button>
                             <button type="button"  id="deleteTopic_${p.topic.id}"
@@ -89,7 +89,7 @@
                         </div>
                             <div class="edit-form" id="editTrendingTopicClass_${p.id}" style="display:none;">
                                 <form>
-                                    <input type="text" name="newTopicName" required>
+                                    <input type="text" name="newTrendingTopicName_${p.id}" required>
                                     <button type="button" onclick="saveTrendingTopic('${p.id}')"
                                             class="save-button btn btn-primary" id="saveTrendingTopic_${p.id}">Save</button>
                                     <button type="button" onclick="cancelTrendingTopic('${p.id}')"
@@ -122,10 +122,10 @@
                         <div class="col manage">
                             <g:render template="/sendInvite" model="[topicId:p.id]"/>
                             <g:if test="${(session.user.id==p.createdBy.id) || session.user.admin==true}">
-                                <button type="button"  id="editTrendingTopic_${p.id}" class="btn btn-link
-                            chat-icon" onclick="editTrendingTopicName(${p.id})"><asset:image src="writing.png"/>
+                                <button type="button"  id="editTrendingTopic_${p.id}" class="btn btn-link"
+                                        onclick="editTrendingTopicName(${p.id})"><asset:image src="writing.png"/>
                                 </button>
-                                <button type="button"  id="deleteTopic_${p.id}" class="btn btn-link chat-icon"
+                                <button type="button"  id="deleteTopic_${p.id}" class="btn btn-link"
                                         onclick="deleteTopic(${p.id})"><asset:image src="bin.png"/></button>
                             </g:if>
                         </div>

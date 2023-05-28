@@ -41,3 +41,8 @@
 <div class="row">
     <p>${doc.description}</p>
 </div>
+<div class="row">
+    <a id="deletePost_${doc.id}" href="#"  data-post-id="${doc.id}"  onclick="deletePost(${doc.id})">
+        Delete
+    </a>
+</div>

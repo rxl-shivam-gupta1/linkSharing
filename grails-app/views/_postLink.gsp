@@ -21,9 +21,11 @@
                     <g:form controller="viewPost">
                         <fieldset class="form">
                             <label for="score">Rating:</label>
+                            <g:if test="${session.user}">
                             <input type="range" name="score" id="score" min="1" max="5" value="${ratingScore}" step="1"
                                    oninput="this.nextElementSibling.value = this.value" required>
                             <output>${ratingScore}</output>
+                            </g:if>
                             <div class="hidden">
                                 <label for="userId">User:</label>
                                 <input name="userId" id="userId" type="text" value="${session.user.id}">
@@ -40,4 +42,9 @@
 </div>
 <div class="row">
     <p>${link.description}</p>
+</div>
+<div class="row">
+    <a id="deletePost_${link.id}" href="#"  data-post-id="${link.id}"  onclick="deletePost(${link.id})">
+    Delete
+    </a>
 </div>

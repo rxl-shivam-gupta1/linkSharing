@@ -101,7 +101,7 @@ function cancelTopic(topicId) {
 }
 function saveTopic(topicId) {
     $(document).ready(function () {
-        var newTopicName = $('input[name="newTopicName"]').val();
+        var newTopicName = $('#saveTopic_'+topicId).parent('form').find('input[name="newTopicName"]').val();
         console.log(newTopicName)
 
         $.ajax({
@@ -111,7 +111,7 @@ function saveTopic(topicId) {
             success: function (response) {
                 $('#topicName_' + topicId).text(newTopicName).show();
                 $('#editTopicClass_' + topicId).hide();
-                window.location.reload()
+                // window.location.reload()
             },
             error: function (error) {
                 console.log(error);
@@ -154,17 +154,17 @@ function cancelTrendingTopic(topicId) {
 }
 function saveTrendingTopic(topicId) {
     $(document).ready(function () {
-        var newTopicName = $('input[name="newTopicName"]').val();
-        console.log(newTopicName)
+        var newTrendingTopicName = $('input[name="newTrendingTopicName"]').val();
+        console.log(newTrendingTopicName)
 
         $.ajax({
             url: '/editSubscribedTopic/index',
             type: 'POST',
-            data: {id: topicId, name: newTopicName},
+            data: {id: topicId, name: newTrendingTopicName},
             success: function (response) {
-                $('#rendingTopicName_' + topicId).text(newTopicName).show();
+                $('#trendingTopicName_' + topicId).text(newTrendingTopicName).show();
                 $('#editTrendingTopicClass_' + topicId).hide();
-                window.location.reload()
+                // window.location.reload()
             },
             error: function (error) {
                 console.log(error);
