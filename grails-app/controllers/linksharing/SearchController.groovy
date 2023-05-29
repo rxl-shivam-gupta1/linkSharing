@@ -9,7 +9,7 @@ class SearchController {
     def searchTopic(){
         List res=LinkResource.list()+DocumentResource.list()
         List topics=Topic.list()
-        List result=searchService.searchData(params,session.user)
+        List result= searchService.searchData(params,session.user) as List
         if(session.user){
             User user=User.findByUserName(session.user.userName)
             render view:'searchPage',model:[first:user.firstName,last:user.lastName,

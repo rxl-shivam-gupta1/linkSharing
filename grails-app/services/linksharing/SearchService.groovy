@@ -14,7 +14,7 @@ class SearchService {
                 return Resource.createCriteria().list{
                     createAlias('topic','t')
                     or{
-                        ilike('topic.name', "%${params?.query}%")
+                        eq('topic.id', Topic.findByNameLike("%${params?.query}%"))
                         ilike("description", "%${params?.query}%")
                     }
                 }
@@ -29,7 +29,7 @@ class SearchService {
                     return Resource.createCriteria().list{
                         createAlias('topic','t')
                         or{
-                            eq('topic', Topic.executeQuery("where name like '%${params?.query}%'"))
+                            inList('topic.id', Topic.findAllByNameLike("%${params?.query}%").id)
                             ilike("description", "%${params?.query}%")
                         }
                     }
@@ -44,7 +44,7 @@ class SearchService {
                             eq 't.createdBy', user
                         }
                         or {
-                            ilike("t.name", "%${params?.query}%")
+                            eq('topic.id', Topic.findByNameLike("%${params?.query}%"))
                             ilike("description", "%${params?.query}%")
                         }
                     }

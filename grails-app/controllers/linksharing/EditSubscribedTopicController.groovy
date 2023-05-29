@@ -22,18 +22,12 @@ class EditSubscribedTopicController {
         def topic = Topic.get(params.topicId as Long)
         if (topic) {
             def sub=Subscription.findAllByTopic(topic)
-            def link=LinkResource.findAllByTopic(topic)
-            def doc=DocumentResource.findAllByTopic(topic)
-            def readLink=ReadingItem.findAllByResource(link)
-            def readDoc=ReadingItem.findAllByResource(doc)
-            def rateLink=ResourceRating.findAllByResource(link)
-            def rateDoc=ResourceRating.findAllByResource(doc)
-            rateDoc?.each{it.delete(flush: true, failOnError: true)}
-            rateLink?.each{it.delete(flush: true, failOnError: true)}
-            readDoc?.each{it.delete(flush: true, failOnError: true)}
-            readLink?.each{it.delete(flush: true, failOnError: true)}
-            doc?.each{it.delete(flush: true, failOnError: true)}
-            link?.each{it.delete(flush: true, failOnError: true)}
+            def post=Resource.findAllByTopic(topic)
+            def reading=ReadingItem.findAllByResourceInList(post)
+            def rate=ResourceRating.findAllByResourceInList(post)
+            rate?.each{it.delete(flush: true, failOnError: true)}
+            reading?.each{it.delete(flush: true, failOnError: true)}
+            post?.each{it.delete(flush: true, failOnError: true)}
             sub?.each{it.delete(flush: true, failOnError: true)}
             topic?.delete(flush: true, failOnError: true)
             render ([success:true] as JSON)

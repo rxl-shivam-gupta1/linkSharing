@@ -18,6 +18,14 @@ class AdminController {
     def deleteTopic(){
         if(!session.user){redirect(url:'/User')}
         def topic=Topic.get(params.topicId as Long)
+        def sub=Subscription.findAllByTopic(topic)
+        def post=Resource.findAllByTopic(topic)
+        def reading=ReadingItem.findAllByResourceInList(post)
+        def rate=ResourceRating.findAllByResourceInList(post)
+        rate?.each{it.delete(flush: true, failOnError: true)}
+        reading?.each{it.delete(flush: true, failOnError: true)}
+        post?.each{it.delete(flush: true, failOnError: true)}
+        sub?.each{it.delete(flush: true, failOnError: true)}
         topic.delete(flush:true,failOnError:true)
         def deletedTopic=Topic.get(params.topicId as Long)
         if(!deletedTopic) {
@@ -44,9 +52,9 @@ class AdminController {
         def post=Resource.get(params.postId as Long)
         def readingItem=ReadingItem.findAllByResource(post)
         def rating=ResourceRating.findAllByResource(post)
-        rating.each{it.delete(flush:true,failOnError:true)}
-        readingItem.each{it.delete(flush:true,failOnError:true)}
-        post.delete(flush:true,failOnError:true)
+        rating?.each{it.delete(flush:true,failOnError:true)}
+        readingItem?.each{it.delete(flush:true,failOnError:true)}
+        post?.delete(flush:true,failOnError:true)
         def deletedPost=Resource.get(params.postId as Long)
         if(!deletedPost) {
             render([success: true] as JSON)

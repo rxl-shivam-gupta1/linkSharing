@@ -3,8 +3,9 @@
     <div class="col">
         <g:if test="${params.controller=='dashboard' || params.controller=='viewPost'}">
             <g:if test="${type=='subscription'}">
+                <div class="sub">
             <g:each in="${sList}" var="p">
-                <div class="row" id="topic_${p.topic.id}">
+                <div class="row">
                     <div class="col-3">
                         <g:img dir="images" id="profilePhoto"  file="${p.user.photo}" width="60" height="60"/>
                     </div>
@@ -34,7 +35,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="row" id="manage_${p.topic.id}">
+                <div class="row">
                     <div class="col">
                         <div class="dropdown">
                             <g:select class="form-select" id="seriousness_${p.id}" name="seriousness_${p.id}"
@@ -55,7 +56,7 @@
                         </g:if>
                     </div>
                 </div>
-                <div class="row" id="edit_${p.topic.id}">
+                <div class="row">
                     <div class="col manage">
                         <g:render template="/sendInvite" model="[topicId:p.topic.id]"/>
                         <g:if test="${(session.user.id==p.topic.createdBy.id) || session.user.admin==true}">
@@ -73,8 +74,10 @@
             <div class="pagination">
                 <g:paginate total="${sCount ?: 0}" max="5" maxsteps="3"/>
             </div>
+                </div>
             </g:if>
             <g:if test="${type=='topic'}">
+                <div class="topic">
                 <g:each in="${tList}" var="p">
                     <div class="row">
                         <div class="col-3">
@@ -89,7 +92,7 @@
                         </div>
                             <div class="edit-form" id="editTrendingTopicClass_${p.id}" style="display:none;">
                                 <form>
-                                    <input type="text" name="newTrendingTopicName_${p.id}" required>
+                                    <input type="text" name="newTrendingTopicName" required>
                                     <button type="button" onclick="saveTrendingTopic('${p.id}')"
                                             class="save-button btn btn-primary" id="saveTrendingTopic_${p.id}">Save</button>
                                     <button type="button" onclick="cancelTrendingTopic('${p.id}')"
@@ -112,8 +115,7 @@
                                 </p>
                             </g:if>
                             <g:else>
-                                <p><a href="#" onclick="subscribeTopic(${p.id},${session.user.id})">Subscribe
-                                </a></p>
+                                <p><a href="#" onclick="subscribeTopic(${p.id},${session.user.id})">Subscribe</a></p>
                             </g:else>
                             </g:if>
                         </div>
@@ -135,8 +137,10 @@
                 <div class="pagination">
                     <g:paginate total="${tCount ?: 0}" max="5" maxsteps="3"/>
                 </div>
+                </div>
             </g:if>
             <g:if test="${type=='inbox'}">
+                <div class="inbox">
                 <g:each in="${iList}" var="p">
                     <div class="row">
                         <div class="col-3">
@@ -149,7 +153,7 @@
                                         params="[userName:p.resource.createdBy.userName]">@${p.resource.createdBy.userName}</g:link>
                             </p>
                         </div>
-                        <div class="topicName col">
+                        <div class="topicName col"  id="inbox_${p.resource.topic.id}">
                             <g:link controller="topicShow" action="index" params="[name:p.resource.topic.name]">
                                 ${p.resource.topic.name}
                             </g:link>
@@ -178,6 +182,7 @@
                 </g:each>
                 <div class="pagination">
                     <g:paginate total="${iCount ?: 0}" max="5" maxsteps="3"/>
+                </div>
                 </div>
             </g:if>
         </g:if>
@@ -209,6 +214,7 @@
         </g:elseif>
         <g:elseif test="${params.controller=='profile'}">
             <g:if test="${type=='subscription'}">
+                <div class="sub">
             <g:each in="${sList}" var="p">
                 <div class="row">
                     <div class="col-3">
@@ -256,8 +262,10 @@
             <div class="pagination">
                 <g:paginate total="${sCount ?: 0}" max="5" maxsteps="3"/>
             </div>
+                </div>
             </g:if>
             <g:if test="${type=='post'}">
+                <div class="resource">
             <g:each in="${rList}" var="p">
                 <div class="row">
                     <div class="col-3">
@@ -294,8 +302,10 @@
             <div class="pagination">
                 <g:paginate total="${rCount ?: 0}" max="5" maxsteps="3"/>
             </div>
+                </div>
             </g:if>
             <g:if test="${type=='topic'}">
+                <div class="topic">
                 <g:each in="${tList}" var="p">
                     <div class="row">
                         <div class="col-3">
@@ -333,6 +343,7 @@
                 </g:each>
                 <div class="pagination">
                     <g:paginate total="${tCount ?: 0}" max="5" maxsteps="3"/>
+                </div>
                 </div>
             </g:if>
         </g:elseif>

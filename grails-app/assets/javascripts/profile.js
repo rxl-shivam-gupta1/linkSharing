@@ -178,7 +178,7 @@ function saveTrendingTopic(topicId) {
 function getTopic(){
     var grid = $("div.sub");
     $.ajax({
-        url:"/dashboard/subscription",
+        url:"/profile/subscription",
         method:'GET',
         success:function(data){
             $(grid).fadeOut('fast',function(){$('#post').html(data).fadeIn('slow');});
@@ -188,7 +188,7 @@ function getTopic(){
 function getTrendingTopic(){
     var grid = $("div.topic");
     $.ajax({
-        url:"/dashboard/trendingTopic",
+        url:"/profile/trendingTopic",
         method:'GET',
         success:function(data){
             $(grid).fadeOut('fast',function(){$('#trendingTopic').html(data).fadeIn('slow');});
@@ -196,9 +196,9 @@ function getTrendingTopic(){
     })
 }
 function getInbox(){
-    var grid = $("div.inbox");
+    var grid = $("div.resource");
     $.ajax({
-        url:"/dashboard/inbox",
+        url:"/profile/resource",
         method:'GET',
         success:function(data){
             $(grid).fadeOut('fast',function(){$('#inbox').html(data).fadeIn('slow');});
@@ -208,7 +208,7 @@ function getInbox(){
 function getCard(){
     var grid = $("div.list");
     $.ajax({
-        url:"/dashboard/card",
+        url:"/profile/card",
         method:'GET',
         success:function(data){
             $(grid).fadeOut('fast',function(){$('#userCard').html(data).fadeIn('slow');});

@@ -11,6 +11,7 @@
     <asset:javascript src="js/bootstrap.js"/>
     <asset:javascript src="application.js"/>
     <asset:javascript src="dashboard.js"/>
+    <asset:javascript src="myJQuery.js"/>
     <div class="container">
         <g:render template="/navbar"/>
         <g:if test="${flash.message}">
@@ -22,7 +23,7 @@
         <div class="row">
             <div class="col">
             <div class="row">
-        	    <div class="prof container">
+        	    <div class="prof container" id="userCard">
         	        <g:render template="/userCard" model="[first:first,last:last,userName:name,topic:topic,
                                                            sub:sub]"/>
                 </div>
@@ -53,8 +54,10 @@
                             <h3>Inbox</h3>
                             <hr>
                         </div>
+                        <div id="inbox">
                         <g:render template="/login/posts" model="[type:'inbox',iList:inboxList,
                                                                   iCount:inboxCount]"/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,8 +69,10 @@
                             <h3>Trending Topics</h3>
                             <hr>
                         </div>
+                        <div id="trendingTopic">
                         <g:render template="/login/posts" model="[type:'topic',tList:topicList,
                                                                   tCount:topicCount]"/>
+                        </div>
                     </div>
                 </div>
             </div>

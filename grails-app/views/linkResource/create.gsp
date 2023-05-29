@@ -18,10 +18,12 @@
                         <f:field bean="linkResource" property="createdBy" value="${session.user}"/>
                     </div>
                     <f:field bean="linkResource" property="topic">
-                        <g:select from="${Topic.list()}" name="topic" optionKey="id" optionValue="name"/>
+                        <g:select from="${Topic.list()}" name="topic" optionKey="id" optionValue="name"
+                                  noSelection="['':'-Choose topic-']" required="true"/>
                     </f:field>
                 </fieldset>
-                <g:submitButton name="create" class="save btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                <g:submitButton name="create" class="save btn btn-primary"
+                                value="${message(code: 'default.button.create.label', default: 'Create')}" />
             </g:form>
         </div>
     </body>

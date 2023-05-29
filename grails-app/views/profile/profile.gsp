@@ -11,12 +11,13 @@
 <asset:javascript src="application.js"/>
 <asset:javascript src="myJQuery.js"/>
 <asset:javascript src="inputValidation.js"/>
+<asset:javascript src="profile.js"/>
 <div class="container">
     <g:render template="/navbar"/>
     <div class="row">
     <div class="col">
         <div class="col">
-            <div class="prof container">
+            <div class="prof container" id="userCard">
                 <g:render template="/userCard" model="[first:first,last:last,userName:userName,topic:topic,sub:sub]"/>
             </div>
         </div>

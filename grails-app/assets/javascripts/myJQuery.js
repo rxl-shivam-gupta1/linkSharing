@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 function setupGridAjax() {
-    $("#post").find(".pagination a").click(function(event) {
+    $(".pagination a").click(function(event) {
         event.preventDefault();
         var url = $(this).attr('href');
 
@@ -17,4 +17,7 @@ function setupGridAjax() {
             }
         });
     });
+        $(document).ready(function () {
+            setupGridAjax();
+        });
 }

@@ -25,10 +25,12 @@
             </div>
             <div class="fieldcontain">
                 <label for="documentTopic">Topic</label>
-                <g:select name="documentTopic" id="documentTopic" from="${Topic.list()}" optionValue="${{topic -> topic.name}}" optionKey="${{topic -> topic.id}}" required="true"/>
+                <g:select name="documentTopic" id="documentTopic" from="${Topic.list()}"
+                          optionValue="${{topic -> topic.name}}" optionKey="${{topic -> topic.id}}"
+                          required="true" noSelection="['':'-Choose topic-']"/>
             </div>
             </fieldset>
-            <g:submitButton id="shareDocument" name="Share" class="btn btn-primary">Share</g:submitButton>
+            <g:submitButton id="shareDocument" name="Share" class="btn btn-primary">Add</g:submitButton>
         </g:uploadForm>
         </div>
     </body>
